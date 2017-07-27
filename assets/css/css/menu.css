@@ -1,0 +1,411 @@
+  html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+  /* HTML5 display-role reset for older browsers */
+
+  article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+  }
+
+  body {
+    line-height: 1;
+  }
+
+  ol, ul {
+    list-style: none;
+  }
+
+  blockquote, q {
+    quotes: none;
+  }
+
+  blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  html, body {
+    font-family: 'PT Sans', sans-serif;
+  }
+
+  .wrapper {
+    margin: 0 auto;
+    /*width: 75%;*/
+    max-width: 1024px;
+    position: relative;
+  }
+
+  .wrap>.container {
+    padding: 70px 15px 20px;
+  }
+  /* Sticky footer styles
+-------------------------------------------------- */
+
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+
+  body {
+    /* Margin bottom by footer height */
+    margin-bottom: 70px;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+  }
+  /* Custom page CSS
+-------------------------------------------------- */
+  /* Not required for template or sticky footer method. */
+
+  body>.container {
+    padding: 60px 15px 0;
+  }
+
+  .container .text-muted {
+    margin: 20px 0;
+  }
+
+  .footer>.container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  a.asc:after {
+    content: /*"\e113"*/
+    "\e151";
+  }
+
+  a.desc:after {
+    content: /*"\e114"*/
+    "\e152";
+  }
+
+  .sort-numerical a.asc:after {
+    content: "\e153";
+  }
+
+  .sort-numerical a.desc:after {
+    content: "\e154";
+  }
+
+  .sort-ordinal a.asc:after {
+    content: "\e155";
+  }
+
+  .sort-ordinal a.desc:after {
+    content: "\e156";
+  }
+
+  body {
+    background: #DCDCDC;
+    overflow-x: hidden;
+  }
+
+  .clearfix:before, .clearfix:after {
+    content: " ";
+    display: table;
+  }
+
+  .clearfix:after {
+    clear: both;
+  }
+
+  .clearfix {
+    *zoom: 1;
+  }
+
+  .container_nav {
+    display: inline-block;
+    position: relative;
+    /*margin-top: 20px;*/
+    padding: 70px 0 10px 0;
+    /*margin-left: 20px;*/
+    /*float: left;*/
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    z-index: 3;
+  }
+
+  #brand {
+    margin-left: 10px;
+    color: #2ea04d;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+    text-shadow: 0px 1px 0px whitesmoke;
+  }
+
+  .content_start {
+    margin: 0 auto;
+    padding: 70px 20px 0 20px;
+    width: 80%;
+    -webkit-animation: 1s fadeCont;
+    animation: 1s fadeCont;
+    z-index: 2;
+  }
+
+  .content_start_TS {
+    margin: 0 auto;
+    padding: 70px 0 0 0;
+    -webkit-animation: 1s fadeCont;
+    animation: 1s fadeCont;
+    z-index: 2;
+  }
+
+  .search-mobile {
+    display: none !important;
+    background: #2ea04d;
+    border-left: 1px solid #2ea04d;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .search-mobile i {
+    color: #FFF;
+    margin: 0 !important;
+  }
+
+  .navbar-default {
+    background: white;
+  }
+
+  .navbar-default .navbar-nav>li>a {
+    border-bottom: 0;
+  }
+
+  .navbar-default .navbar-nav>li.active>a {
+    text-align: center;
+    background: white;
+    color: #2ea04d;
+    border-bottom: 4px solid #2ea04d;
+    -webkit-transition: border-bottom 0.35s linear;
+    transition: border-bottom 0.35s linear;
+  }
+
+  .navbar-default .navbar-nav>li>a {
+    font-weight: bold;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .navbar-default .navbar-nav>li.active>a:hover, .navbar-default .navbar-nav>li.active>a:focus, .navbar-default .navbar-nav>li>a:focus {
+    color: #777;
+    background: white;
+  }
+
+  .navbar-default .navbar-nav>li>a:hover {
+    color: #2ea04d;
+  }
+
+  @-webkit-keyframes fadeCont {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeCont {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes fadeContOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeContOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  /*sub nav bar */
+
+  .anchor {
+    content: '';
+    position: absolute;
+    margin-top: -100px;
+    clear: both;
+    display: block;
+  }
+
+  .navAnch {
+    min-height: 30px;
+    width: auto;
+    position: fixed;
+    background: white;
+    margin-right: 35px;
+    border-radius: 0px 0px 10px 10px;
+    padding: 5px 6px;
+    border: 1px solid #e7e7e7;
+    -webkit-box-shadow: -0px -2px 0px white, 1px 2px 7px white, 1px 4px 7px gray;
+    box-shadow: -0px -2px 0px white, 1px 2px 7px white, 1px 4px 7px gray;
+    border-top: none;
+    z-index: 1;
+    -webkit-transition: 0.35s;
+    transition: 0.35s;
+  }
+
+  .navList li {
+    position: relative;
+    text-align: center;
+    display: inline-block;
+  }
+
+  .navList li a span {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 2px 4px;
+    line-height: 20px;
+    color: #777;
+    text-shadow: 1px 1px 2px whitesmoke;
+    /* transition: 0.35s;*/
+    border-left: 1px solid rgb(255, 255, 255);
+    border-right: 1px solid rgb(255, 255, 255);
+    -webkit-transition: all 300ms linear;
+    transition: all 300ms linear;
+  }
+
+  .navList li:first-child a span {
+    padding: 2px 5px;
+    border-left: none;
+    border-right: none;
+    -webkit-transition: all 300ms linear;
+    transition: all 300ms linear;
+  }
+
+  .navList li:first-child:hover a span {
+    color: #2ea04d;
+    border-left: none;
+    border-right: none;
+    padding: 2px 5px;
+  }
+
+  .navList li a {
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .navList li:hover a span {
+    cursor: pointer;
+    color: #2ea04d;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    border-radius: 5px;
+    -webkit-animation: subMenuHover 300ms ease-in-out;
+    animation: subMenuHover 300ms ease-in-out;
+  }
+
+  .navAnch i {
+    /*transition: 0.5s;*/
+  }
+
+  .navbar {
+    z-index: 5;
+  }
+  /*end sub nav bar*/
+  /**add Menu Style**/
+
+  aside {
+    display: block;
+    margin-left: 0px;
+    display: inline-block;
+    padding-left: 15px;
+    width: 300px;
+    z-index: 1;
+  }
+
+  .sticky {
+    position: fixed;
+    z-index: 1;
+  }
+
+  .sticky:hover {
+    z-index: 2;
+  }
+
+  .stop {
+    position: relative;
+    z-index: 2;
+  }
+
+  article {
+    width: 100%;
+    height: auto;
+  }
+
+  .mcd-menu li a strong {
+    font-weight: bold;
+  }
+
+  .mcd-menu li a small {
+    letter-spacing: 0.01em;
+  }
+  /** end **/
+
+  @-webkit-keyframes subMenuHover {
+    from {
+      opacity: 0;
+      -webkit-transform: translateY(150%);
+      transform: translateY(150%);
+    }
+    to {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+      transform: translateY(0%);
+    }
+  }
+
+  @keyframes subMenuHover {
+    from {
+      opacity: 0;
+      -webkit-transform: translateY(150%);
+      transform: translateY(150%);
+    }
+    to {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+      transform: translateY(0%);
+    }
+  }
+
+  nav#leftNav {
+    display: inline-block;
+  }
+
+  #hideSubMenu {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+  }

@@ -1,0 +1,826 @@
+.bg {
+  position: absolute;
+  margin-top: -34px;
+  /* opacity: .5;*/
+  border-radius: 4px;
+  /* background: red;*/
+  height: 34px;
+  width: 100%;
+  z-index: 1; }
+
+.buttonWraper {
+  display: inline-block;
+  position: relative;
+  width: 150px; }
+
+.buttonWraper_delete {
+  display: none;
+  position: relative;
+  width: 250px; }
+
+.success .buttonWraper_delete {
+  display: inline-block; }
+
+@-webkit-keyframes loading {
+  0% {
+    width: 0; }
+  100% {
+    width: 100%; } }
+
+@keyframes loading {
+  0% {
+    width: 0; }
+  100% {
+    width: 100%; } }
+
+@-webkit-keyframes percentage {
+  1% {
+    content: "1%"; }
+  2% {
+    content: "2%"; }
+  3% {
+    content: "3%"; }
+  4% {
+    content: "4%"; }
+  5% {
+    content: "5%"; }
+  6% {
+    content: "6%"; }
+  7% {
+    content: "7%"; }
+  8% {
+    content: "8%"; }
+  9% {
+    content: "9%"; }
+  10% {
+    content: "10%"; }
+  11% {
+    content: "11%"; }
+  12% {
+    content: "12%"; }
+  13% {
+    content: "13%"; }
+  14% {
+    content: "14%"; }
+  15% {
+    content: "15%"; }
+  16% {
+    content: "16%"; }
+  17% {
+    content: "17%"; }
+  18% {
+    content: "18%"; }
+  19% {
+    content: "19%"; }
+  20% {
+    content: "20%"; }
+  21% {
+    content: "21%"; }
+  22% {
+    content: "22%"; }
+  23% {
+    content: "23%"; }
+  24% {
+    content: "24%"; }
+  25% {
+    content: "25%"; }
+  26% {
+    content: "26%"; }
+  27% {
+    content: "27%"; }
+  28% {
+    content: "28%"; }
+  29% {
+    content: "29%"; }
+  30% {
+    content: "30%"; }
+  31% {
+    content: "31%"; }
+  32% {
+    content: "32%"; }
+  33% {
+    content: "33%"; }
+  34% {
+    content: "34%"; }
+  35% {
+    content: "35%"; }
+  36% {
+    content: "36%"; }
+  37% {
+    content: "37%"; }
+  38% {
+    content: "38%"; }
+  39% {
+    content: "39%"; }
+  40% {
+    content: "40%"; }
+  41% {
+    content: "41%"; }
+  42% {
+    content: "42%"; }
+  43% {
+    content: "43%"; }
+  44% {
+    content: "44%"; }
+  45% {
+    content: "45%"; }
+  46% {
+    content: "46%"; }
+  47% {
+    content: "47%"; }
+  48% {
+    content: "48%"; }
+  49% {
+    content: "49%"; }
+  50% {
+    content: "50%"; }
+  51% {
+    content: "51%"; }
+  52% {
+    content: "52%"; }
+  53% {
+    content: "53%"; }
+  54% {
+    content: "54%"; }
+  55% {
+    content: "55%"; }
+  56% {
+    content: "56%"; }
+  57% {
+    content: "57%"; }
+  58% {
+    content: "58%"; }
+  59% {
+    content: "59%"; }
+  60% {
+    content: "60%"; }
+  61% {
+    content: "61%"; }
+  62% {
+    content: "62%"; }
+  63% {
+    content: "63%"; }
+  64% {
+    content: "64%"; }
+  65% {
+    content: "65%"; }
+  66% {
+    content: "66%"; }
+  67% {
+    content: "67%"; }
+  68% {
+    content: "68%"; }
+  69% {
+    content: "69%"; }
+  70% {
+    content: "70%"; }
+  71% {
+    content: "71%"; }
+  72% {
+    content: "72%"; }
+  73% {
+    content: "73%"; }
+  74% {
+    content: "74%"; }
+  75% {
+    content: "75%"; }
+  76% {
+    content: "76%"; }
+  77% {
+    content: "77%"; }
+  78% {
+    content: "78%"; }
+  79% {
+    content: "79%"; }
+  80% {
+    content: "80%"; }
+  81% {
+    content: "81%"; }
+  82% {
+    content: "82%"; }
+  83% {
+    content: "83%"; }
+  84% {
+    content: "84%"; }
+  85% {
+    content: "85%"; }
+  86% {
+    content: "86%"; }
+  87% {
+    content: "87%"; }
+  88% {
+    content: "88%"; }
+  89% {
+    content: "89%"; }
+  90% {
+    content: "90%"; }
+  91% {
+    content: "91%"; }
+  92% {
+    content: "92%"; }
+  93% {
+    content: "93%"; }
+  94% {
+    content: "94%"; }
+  95% {
+    content: "95%"; }
+  96% {
+    content: "96%"; }
+  97% {
+    content: "97%"; }
+  98% {
+    content: "98%"; }
+  99% {
+    content: "99%"; }
+  100% {
+    content: "100%"; } }
+
+@keyframes percentage {
+  1% {
+    content: "1%"; }
+  2% {
+    content: "2%"; }
+  3% {
+    content: "3%"; }
+  4% {
+    content: "4%"; }
+  5% {
+    content: "5%"; }
+  6% {
+    content: "6%"; }
+  7% {
+    content: "7%"; }
+  8% {
+    content: "8%"; }
+  9% {
+    content: "9%"; }
+  10% {
+    content: "10%"; }
+  11% {
+    content: "11%"; }
+  12% {
+    content: "12%"; }
+  13% {
+    content: "13%"; }
+  14% {
+    content: "14%"; }
+  15% {
+    content: "15%"; }
+  16% {
+    content: "16%"; }
+  17% {
+    content: "17%"; }
+  18% {
+    content: "18%"; }
+  19% {
+    content: "19%"; }
+  20% {
+    content: "20%"; }
+  21% {
+    content: "21%"; }
+  22% {
+    content: "22%"; }
+  23% {
+    content: "23%"; }
+  24% {
+    content: "24%"; }
+  25% {
+    content: "25%"; }
+  26% {
+    content: "26%"; }
+  27% {
+    content: "27%"; }
+  28% {
+    content: "28%"; }
+  29% {
+    content: "29%"; }
+  30% {
+    content: "30%"; }
+  31% {
+    content: "31%"; }
+  32% {
+    content: "32%"; }
+  33% {
+    content: "33%"; }
+  34% {
+    content: "34%"; }
+  35% {
+    content: "35%"; }
+  36% {
+    content: "36%"; }
+  37% {
+    content: "37%"; }
+  38% {
+    content: "38%"; }
+  39% {
+    content: "39%"; }
+  40% {
+    content: "40%"; }
+  41% {
+    content: "41%"; }
+  42% {
+    content: "42%"; }
+  43% {
+    content: "43%"; }
+  44% {
+    content: "44%"; }
+  45% {
+    content: "45%"; }
+  46% {
+    content: "46%"; }
+  47% {
+    content: "47%"; }
+  48% {
+    content: "48%"; }
+  49% {
+    content: "49%"; }
+  50% {
+    content: "50%"; }
+  51% {
+    content: "51%"; }
+  52% {
+    content: "52%"; }
+  53% {
+    content: "53%"; }
+  54% {
+    content: "54%"; }
+  55% {
+    content: "55%"; }
+  56% {
+    content: "56%"; }
+  57% {
+    content: "57%"; }
+  58% {
+    content: "58%"; }
+  59% {
+    content: "59%"; }
+  60% {
+    content: "60%"; }
+  61% {
+    content: "61%"; }
+  62% {
+    content: "62%"; }
+  63% {
+    content: "63%"; }
+  64% {
+    content: "64%"; }
+  65% {
+    content: "65%"; }
+  66% {
+    content: "66%"; }
+  67% {
+    content: "67%"; }
+  68% {
+    content: "68%"; }
+  69% {
+    content: "69%"; }
+  70% {
+    content: "70%"; }
+  71% {
+    content: "71%"; }
+  72% {
+    content: "72%"; }
+  73% {
+    content: "73%"; }
+  74% {
+    content: "74%"; }
+  75% {
+    content: "75%"; }
+  76% {
+    content: "76%"; }
+  77% {
+    content: "77%"; }
+  78% {
+    content: "78%"; }
+  79% {
+    content: "79%"; }
+  80% {
+    content: "80%"; }
+  81% {
+    content: "81%"; }
+  82% {
+    content: "82%"; }
+  83% {
+    content: "83%"; }
+  84% {
+    content: "84%"; }
+  85% {
+    content: "85%"; }
+  86% {
+    content: "86%"; }
+  87% {
+    content: "87%"; }
+  88% {
+    content: "88%"; }
+  89% {
+    content: "89%"; }
+  90% {
+    content: "90%"; }
+  91% {
+    content: "91%"; }
+  92% {
+    content: "92%"; }
+  93% {
+    content: "93%"; }
+  94% {
+    content: "94%"; }
+  95% {
+    content: "95%"; }
+  96% {
+    content: "96%"; }
+  97% {
+    content: "97%"; }
+  98% {
+    content: "98%"; }
+  99% {
+    content: "99%"; }
+  100% {
+    content: "100%"; } }
+
+.success .el,
+.success .loading_val {
+  color: #48d048;
+  /* width: 34px;*/ }
+  .success .el:after,
+  .success .loading_val:after {
+    padding-left: 20px;
+    content: "DONE! ";
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 25px;
+    color: white;
+    text-shadow: 0 1px 5px black;
+    -webkit-animation: percentage 0.2s linear;
+    animation: percentage 0.2s linear; }
+
+.success .el#elDel {
+  color: rgba(255, 16, 16, 0.78); }
+
+.success .bg,
+.success .loading_bg {
+  background-color: #48d048;
+  -webkit-animation: loading 0.2s linear;
+  animation: loading 0.2s linear; }
+
+.success .bgDel {
+  border-radius: 4px;
+  background-color: rgba(255, 16, 16, 0.78);
+  -webkit-animation: loading 0.2s linear;
+  animation: loading 0.2s linear; }
+
+.success #updateReport {
+  visibility: hidden; }
+
+.success #addTS,
+.success .btn-danger,
+.success .btn-default {
+  display: none; }
+
+#addTS,
+#updateReport {
+  z-index: 2;
+  position: relative; }
+
+.success #removeReportLine {
+  display: none !important; }
+
+.loading_bg {
+  position: relative;
+  width: 100%;
+  height: 34px;
+  background: red;
+  margin-top: -41px;
+  z-index: 1;
+  border-radius: 4px; }
+
+.success .loading_bg {
+  margin: 7px 0; }
+
+.extraOption {
+  z-index: 3; }
+
+#tableReport {
+  word-break: break-word; }
+
+#tableReport tbody tr td {
+  animation: tableFadeIn 0.5s linear; }
+
+@keyframes tableFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25%); }
+  to {
+    opacity: 1;
+    transform: translateY(0%); } }
+
+#lastReport a {
+  color: rgba(20, 63, 226, 0.77);
+  font-weight: bold; }
+
+#multiReport a {
+  font-weight: bold;
+  color: rgba(54, 177, 53, 0.94); }
+
+#fistPageText {
+  padding-bottom: 10px; }
+
+#notifyTS {
+  padding: 20px;
+  position: fixed;
+  width: auto;
+  min-width: 200px;
+  height: auto;
+  bottom: 0;
+  background: rgba(128, 128, 128, 0.7);
+  right: 60px;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  display: none; }
+
+#notifyTS .text {
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 2px 4px black; }
+
+.showNotify#notifyTS {
+  visibility: hidden;
+  display: flex;
+  animation: showNotify 1.5s; }
+
+@keyframes showNotify {
+  0% {
+    visibility: visible;
+    transform: translateY(0px);
+    opacity: 0.5; }
+  30%,
+  70% {
+    transform: translateY(-70px);
+    opacity: 1; }
+  100% {
+    transform: translateY(0);
+    opacity: 0.5; } }
+
+.modal-open .modal {
+  overflow: hidden; }
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 2px; }
+
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0; }
+
+::-webkit-scrollbar-thumb {
+  background: #48d048;
+  border: 0 none #ffffff;
+  border-radius: 20%; }
+
+::-webkit-scrollbar-thumb:hover {
+  background: #48d048; }
+
+::-webkit-scrollbar-thumb:active {
+  background: rgba(75, 183, 10, 0.8); }
+
+::-webkit-scrollbar-track {
+  background: white;
+  border: 0 none #ffffff;
+  border-radius: 20%; }
+
+::-webkit-scrollbar-track:hover {
+  background: white; }
+
+::-webkit-scrollbar-track:active {
+  background: white; }
+
+::-webkit-scrollbar-corner {
+  background: transparent; }
+
+body {
+  overflow: hidden; }
+
+body.loaded {
+  overflow-y: auto; }
+
+#dbstatus {
+  color: #FFF;
+  text-shadow: 0 1px 13px #449016;
+  font-size: 18px;
+  position: absolute;
+  top: 130px;
+  left: 30px; }
+
+.dbsucc:after {
+  content: 'connected...';
+  margin-left: 5px; }
+
+.dbsucc {
+  top: 30px !important; }
+
+.dberror:after {
+  content: 'connect not available...';
+  margin-left: 5px; }
+
+#dbstatus.dberror {
+  text-shadow: 0 1px 13px #ff0505; }
+
+#dberrorMessage {
+  position: fixed;
+  display: inline-block;
+  top: 170px;
+  left: 50px;
+  font-size: 14px;
+  color: rgba(255, 5, 5, 0.8);
+  line-height: 15px;
+  text-align: left;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+  border-radius: 7px 0;
+  padding: 0 3px 5px 0;
+  text-shadow: none; }
+
+.SQLerror {
+  position: fixed;
+  top: 60px;
+  z-index: 1000;
+  background: gray;
+  color: white;
+  left: 60%;
+  right: 30px;
+  word-wrap: break-word;
+  padding: 15px 5px 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 16px;
+  visibility: hidden; }
+
+.SQLerror.show {
+  animation: fade 1s; }
+
+li #refreshPage:hover {
+  background: transparent;
+  animation: dualSpin 3s infinite; }
+
+@keyframes dualSpin {
+  20% {
+    transform: rotate(360deg); } }
+
+.menuBorder {
+  margin-top: 5px;
+  min-height: 40px;
+  width: 0;
+  margin-right: 15px;
+  border-right: 3px solid #d0d0d0;
+  border-radius: 2px; }
+
+#cngLog a {
+  position: relative;
+  text-decoration: none;
+  color: gray !important;
+  font-weight: bold;
+  font-size: 14px; }
+
+#cngLog:hover {
+  transform: scale(1.3);
+  transition: 1s; }
+
+#closeError {
+  background: transparent;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  border: none;
+  color: black;
+  height: 10px;
+  font-size: 16px; }
+
+#closeError:active,
+#closeError:focus,
+#closeError:hover {
+  color: white;
+  border: none;
+  box-shadow: none; }
+
+.SQLerror {
+  box-shadow: 1px 2px 10px red; }
+
+.datepicker .today {
+  box-shadow: none; }
+
+tr .other {
+  border-radius: 5px; }
+  tr .other[month="previous"] {
+    background: linear-gradient(to right, white 10%, #eaeaea); }
+  tr .other[month="next"] {
+    background: linear-gradient(to left, white 10%, #eaeaea); }
+
+#calendar {
+  vertical-align: middle; }
+
+#table-c {
+  margin-bottom: -5px; }
+  #table-c tr td,
+  #table-c tr th {
+    width: 100%; }
+  #table-c tr {
+    display: flex;
+    width: 100%;
+    padding: 0 !important;
+    text-align: center; }
+
+.table-bordered {
+  border: 3px solid transparent; }
+
+#table-nc tr td {
+  vertical-align: middle; }
+
+#editModal .custEdit div,
+#editModal .objectsEdit div {
+  width: 50%;
+  float: left; }
+  #editModal .custEdit div select,
+  #editModal .objectsEdit div select {
+    width: 90%; }
+
+#editModal .custEdit,
+#editModal .objectsEdit {
+  display: flex;
+  padding: 7px 10px; }
+
+::-webkit-input-placeholder {
+  font-size: 14px;
+  font-weight: normal; }
+
+::-moz-placeholder {
+  font-size: 14px;
+  font-weight: normal; }
+
+/* Firefox 19+ */
+:-moz-placeholder {
+  font-size: 14px;
+  font-weight: normal; }
+
+/* Firefox 18- */
+:-ms-input-placeholder {
+  font-size: 14px;
+  font-weight: normal; }
+
+#it79521_2041:data-content {
+  position: absolute;
+  color: gray;
+  font-weight: bold;
+  margin-top: 35px;
+  margin-left: 10px; }
+
+.OverTime {
+  color: green; }
+
+#today {
+  position: absolute;
+  z-index: 3;
+  top: 50px;
+  font-size: 18px;
+  right: -50px;
+  cursor: pointer;
+  color: #2ea04d;
+  text-align: right;
+  padding: 5px 35px 5px 0;
+  animation: calendarShow 0.7s; }
+  #today i {
+    border-radius: 100%; }
+  #today i:hover {
+    background: white;
+    box-shadow: 2px 4px 10px white; }
+
+#checkDesk {
+  visibility: hidden; }
+
+#lableAddToD {
+  cursor: pointer; }
+
+#checkDesk:checked:before {
+  color: #2ea04d;
+  visibility: visible;
+  position: absolute;
+  content: "\f046";
+  margin-left: 5px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  cursor: pointer; }
+
+#checkDesk:before {
+  color: red;
+  visibility: visible;
+  position: absolute;
+  content: "\f096";
+  margin-left: 5px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  cursor: pointer; }

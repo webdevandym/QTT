@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+  <cryptKey>qJB0rGtIn5UB1xG03efyCp</cryptKey>
+  <secret_iv>RgX54.Ju7h</secret_iv>
+  <dbhost>
+    <item>iron\iron</item>
+  </dbhost>
+  <dbname>
+    <item>project_test</item>
+  </dbname>
+  <dbuser>
+    <item>project</item>
+  </dbuser>
+  <dbpass>
+    <item>ZjY5eE9UUVJqWU84MUNtOTNITWVldz09</item>
+  </dbpass>
+</config>

@@ -1,0 +1,546 @@
+$loadingTime: 0.2s;
+$color: #48d048;
+$colorDelete: rgba(255, 16, 16, .78);
+$pageColor: #FFF;
+$pageShadow: 0 1px 13px rgb(68, 144, 22);
+
+.bg {
+  position: absolute;
+  margin-top: -34px;
+  /* opacity: .5;*/
+  border-radius: 4px;
+  /* background: red;*/
+  height: 34px;
+  width: 100%;
+  z-index: 1;
+}
+
+.buttonWraper {
+  display: inline-block;
+  position: relative;
+  width: 150px;
+}
+
+.buttonWraper_delete {
+  display: none;
+  position: relative;
+  width: 250px;
+}
+
+.success .buttonWraper_delete {
+  display: inline-block;
+}
+@-webkit-keyframes loading {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+@keyframes loading {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+@-webkit-keyframes percentage {
+   @for $i from 1 through 100{
+    $percentage: $i + "%";
+
+    #{$percentage} {
+      content: $percentage;
+    }
+  }
+}
+@keyframes percentage {
+   @for $i from 1 through 100{
+    $percentage: $i + "%";
+
+    #{$percentage} {
+      content: $percentage;
+    }
+  }
+}
+
+.success .el,
+.success .loading_val {
+  color: $color;
+  /* width: 34px;*/
+  &:after {
+    padding-left: 20px;
+    content: "DONE! ";
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 25px;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 1px 5px black;
+    -webkit-animation: percentage $loadingTime linear;
+    animation: percentage $loadingTime linear;
+  }
+}
+
+.success .el#elDel {
+  color: $colorDelete;
+}
+
+.success .bg,
+.success .loading_bg {
+  background-color: $color;
+  -webkit-animation: loading $loadingTime linear;
+  animation: loading $loadingTime linear;
+}
+
+.success .bgDel {
+  border-radius: 4px;
+  background-color: $colorDelete;
+  -webkit-animation: loading $loadingTime linear;
+  animation: loading $loadingTime linear;
+}
+
+.success #updateReport {
+  visibility: hidden;
+}
+
+.success #addTS,
+.success .btn-danger,
+.success .btn-default {
+  display: none;
+}
+
+#addTS,
+#updateReport {
+  z-index: 2;
+  position: relative;
+}
+
+.success #removeReportLine {
+  display: none !important;
+}
+
+.loading_bg {
+  position: relative;
+  width: 100%;
+  height: 34px;
+  background: red;
+  margin-top: -41px;
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.success .loading_bg {
+  margin: 7px 0;
+}
+
+.extraOption {
+  z-index: 3;
+}
+
+#tableReport {
+  word-break: break-word;
+}
+
+#tableReport tbody tr td {
+  animation: tableFadeIn 0.5s linear;
+}
+@keyframes tableFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+#lastReport a {
+  color: rgba(20, 63, 226, .77);
+  font-weight: bold;
+}
+
+#multiReport a {
+  font-weight: bold;
+  color: rgba(54, 177, 53, 0.94);
+}
+
+#fistPageText {
+  padding-bottom: 10px;
+}
+
+#notifyTS {
+  padding: 20px;
+  position: fixed;
+  width: auto;
+  min-width: 200px;
+  height: auto;
+  bottom: 0;
+  background: rgba(128, 128, 128, .7);
+  right: 60px;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+#notifyTS .text {
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 2px 4px black;
+}
+
+.showNotify#notifyTS {
+  visibility: hidden;
+  display: flex;
+  animation: showNotify 1.5s;
+}
+@keyframes showNotify {
+  0% {
+    visibility: visible;
+    transform: translateY(0px);
+    opacity: 0.5;
+  }
+
+  30%,
+  70% {
+    transform: translateY(-70px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+}
+
+.modal-open .modal {
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #48d048;
+  border: 0 none #ffffff;
+  border-radius: 20%;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #48d048;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: rgba(75, 183, 10, .8);
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+  border: 0 none #ffffff;
+  border-radius: 20%;
+}
+
+::-webkit-scrollbar-track:hover {
+  background: white;
+}
+
+::-webkit-scrollbar-track:active {
+  background: white;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+body {
+  overflow: hidden;
+}
+
+body.loaded {
+  overflow-y: auto;
+}
+
+#dbstatus {
+  color: $pageColor;
+  text-shadow: $pageShadow;
+  font-size: 18px;
+  position: absolute;
+  top: 130px;
+  left: 30px;
+}
+
+.dbsucc:after {
+  content: 'connected...';
+  margin-left: 5px;
+}
+
+.dbsucc {
+  top: 30px !important;
+}
+
+.dberror:after {
+  content: 'connect not available...';
+  margin-left: 5px;
+}
+
+#dbstatus.dberror {
+  text-shadow: 0 1px 13px rgb(255, 5, 5);
+}
+
+#dberrorMessage {
+  position: fixed;
+  display: inline-block;
+  top: 170px;
+  left: 50px;
+  font-size: 14px;
+  color: rgba(255, 5, 5,.8);
+  line-height: 15px;
+  text-align: left;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+  border-radius: 7px 0;
+  padding: 0 3px 5px 0;
+  text-shadow: none;
+}
+
+.SQLerror {
+  position: fixed;
+  top: 60px;
+  z-index: 1000;
+  background: gray;
+  color: white;
+  left: 60%;
+  right: 30px;
+  word-wrap: break-word;
+  padding: 15px 5px 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 16px;
+  visibility: hidden;
+}
+
+.SQLerror.show {
+  animation: fade 1s;
+}
+
+li #refreshPage:hover {
+  background: transparent;
+  animation: dualSpin 3s infinite;
+}
+@keyframes dualSpin {
+  20% {
+    transform: rotate(360deg);
+  }
+}
+$height: 50;
+$topMarg: 5;
+
+.menuBorder {
+  margin-top: #{$topMarg + 'px'};
+  min-height: #{$height - $topMarg*2 + 'px'};
+  width: 0;
+  margin-right: 15px;
+  border-right: 3px solid #d0d0d0;
+  border-radius: 2px;
+}
+
+#cngLog a {
+  position: relative;
+  text-decoration: none;
+  color: gray !important;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#cngLog:hover {
+  transform: scale(1.3);
+  transition: 1s;
+}
+
+#closeError {
+  background: transparent;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  border: none;
+  color: black;
+  height: 10px;
+  font-size: 16px;
+}
+
+#closeError:active,
+#closeError:focus,
+#closeError:hover {
+  color: white;
+  border: none;
+  box-shadow: none;
+}
+
+.SQLerror {
+  box-shadow: 1px 2px 10px red;
+}
+
+.datepicker .today {
+  box-shadow: none;
+}
+
+tr {
+  & .other {
+    &[month="previous"] {
+      background: linear-gradient(to right,white 10%,#eaeaea);
+    }
+
+    &[month="next"] {
+      background: linear-gradient(to left,white 10%,#eaeaea);
+    }
+    border-radius: 5px;
+  }
+}
+
+#calendar {
+  vertical-align: middle;
+}
+
+#table-c {
+  margin-bottom: -5px;
+
+  & tr td,
+  & tr th {
+    width: 100%;
+  }
+
+  & tr {
+    display: flex;
+    width: 100%;
+    padding: 0 !important;
+    text-align: center;
+  }
+}
+
+.table-bordered {
+  border: 3px solid transparent;
+}
+
+#table-nc tr td {
+  vertical-align: middle;
+}
+
+#editModal {
+  & .custEdit div,
+  & .objectsEdit div {
+    width: 50%;
+    float: left;
+
+    & select {
+      width: 90%;
+    }
+  }
+
+  & .custEdit,
+  & .objectsEdit {
+    display: flex;
+    padding: 7px 10px;
+  }
+}
+
+::-webkit-input-placeholder {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+::-moz-placeholder {
+  font-size: 14px;
+  font-weight: normal;
+}
+/* Firefox 19+ */
+:-moz-placeholder {
+  font-size: 14px;
+  font-weight: normal;
+}
+/* Firefox 18- */
+:-ms-input-placeholder {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+#it79521_2041:data-content {
+  position: absolute;
+  color: gray;
+  font-weight: bold;
+  margin-top: 35px;
+  margin-left: 10px;
+}
+
+.OverTime {
+  color: green;
+}
+
+#today {
+  position: absolute;
+  z-index: 3;
+  top: 50px;
+  font-size: 18px;
+  right: -50px;
+  cursor: pointer;
+  color: rgb(46, 160, 77);
+  text-align: right;
+  padding: 5px 35px 5px 0;
+  animation: calendarShow 0.7s;
+
+  & i {
+    border-radius: 100%;
+  }
+
+  & i:hover {
+    background: white;
+    box-shadow: 2px 4px 10px white;
+  }
+}
+
+#checkDesk {
+  visibility: hidden;
+}
+
+#lableAddToD {
+  cursor: pointer;
+}
+
+#checkDesk:checked:before {
+  color: #2ea04d;
+  visibility: visible;
+  position: absolute;
+  content: "\f046";
+  margin-left: 5px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  cursor: pointer;
+}
+
+#checkDesk:before {
+  color: red;
+  visibility: visible;
+  position: absolute;
+  content: "\f096";
+  margin-left: 5px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  cursor: pointer;
+}

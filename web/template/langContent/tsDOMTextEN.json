@@ -1,0 +1,33 @@
+{
+  "selBlock": {
+    "pname": "Programmer Name",
+    "cust": "Customer",
+    "projname": "Project Name",
+    "jobt": "Job Type",
+    "hour": "Hours",
+    "oType": "Object Type",
+    "oName": "Object Name"
+  },
+
+  "modalEdit": {
+    "title": "Project editor",
+    "upd": "Update",
+    "close": "Close"
+  },
+
+  "modalDel": {
+    "title": "Delete record",
+    "del": "Delete",
+    "close": "Close"
+  },
+
+  "reportTitle": {
+    "proj": "<i class=\"fa fa-cog\" aria-hidden=\"true\"></i> Project",
+    "pname": "<i class=\"fa fa-user-o\" aria-hidden=\"true\"></i> Programmer",
+    "acc": "<i class=\"fa fa-user-secret\" aria-hidden=\"true\"></i> Account",
+    "desc": "<i class=\"fa fa-comment-o\" aria-hidden=\"true\"></i> Description",
+    "jtype": "<i class=\"fa fa-sticky-note\" aria-hidden=\"true\"></i>  Job Type",
+    "jdate": "<i class=\"fa fa-calendar-o\" aria-hidden=\"true\"></i> Job Date",
+    "jhour": "<i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i> Job Hours"
+  }
+}

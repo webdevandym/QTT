@@ -1,0 +1,38 @@
+{
+  "name": "QTT",
+  "version": "1.0.0",
+  "description": "QTT new Site",
+  "main": "index.js",
+  "dependencies": {
+    "autoprefixer": "^7.1.1",
+    "es5-ext": "^0.10.23",
+    "gulp-delete-file": "^1.0.2",
+    "gulp-notify": "^3.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-wait2": "0.0.5",
+    "pump": "^1.0.2",
+    "uglify-es": "^3.0.23",
+    "uglify-js": "^3.0.23"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean-css": "^3.3.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify": "^1.0.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-server-livereload": "^1.9.2",
+    "gulp-uglify": "^3.0.0",
+    "gulp-uglyfly": "^1.4.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andy M",
+  "license": "ISC"
+}

@@ -1,0 +1,219 @@
+[192.168.1.62=>lz] 2017-06-07 18:47:45: Function -> getReportWeek() success
+SELECT j.id, j.object_id, n.name AS name, cust.name AS customer, s.name AS userName, a.account_name AS account, j.job_descr AS descr, jt.name AS jobType, CONVERT( DATE, j.job_date ) AS dateJob, CONVERT( INT, j.job_hours ) AS hoursJob FROM proj_names n, proj_users s, proj_accounts a, proj_jobs j, proj_jobtypes jt, proj_customers cust, proj_objects obj WHERE s.name = 'lz' AND s.id = j.user_id AND a.id = j.account_id AND jt.id = j.jobtype_id AND obj.id = j.object_id AND n.id = obj.proj_id AND (j.job_date BETWEEN '2017-06-05' AND '2017-06-11') AND cust.id = n.customer_id ORDER BY j.job_date, n.name, j.job_hours...
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:45: Function -> getProject() success
+SELECT distinct name, id FROM proj_customers ORDER BY name
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:46: Function -> getUserName() success
+SELECT f_name,name,id FROM proj_users WHERE disabled = 0 order by f_name
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:46: Function -> getJobType() success
+SELECT name,id FROM proj_jobtypes ORDER BY id
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:46: Function -> getObjectType() success
+SELECT name,id FROM proj_objtypes order by id
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:46: Function -> getProject() success
+SELECT name,id FROM proj_names WHERE customer_id ='43' ORDER BY name
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:46: Function -> getObjectName() failure
+SELECT object_num,id FROM proj_objects WHERE objtype_id=AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:46: Function -> getObjectName() success
+SELECT object_num,id FROM proj_objects WHERE objtype_id=1AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:52: Function -> getReportWeek() success
+SELECT j.id, j.object_id, n.name AS name, cust.name AS customer, s.name AS userName, a.account_name AS account, j.job_descr AS descr, jt.name AS jobType, CONVERT( DATE, j.job_date ) AS dateJob, CONVERT( INT, j.job_hours ) AS hoursJob FROM proj_names n, proj_users s, proj_accounts a, proj_jobs j, proj_jobtypes jt, proj_customers cust, proj_objects obj WHERE s.name = 'lz' AND s.id = j.user_id AND a.id = j.account_id AND jt.id = j.jobtype_id AND obj.id = j.object_id AND n.id = obj.proj_id AND (j.job_date BETWEEN '2017-06-05' AND '2017-06-11') AND cust.id = n.customer_id ORDER BY j.job_date, n.name, j.job_hours...
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:52: Function -> getProject() success
+SELECT distinct name, id FROM proj_customers ORDER BY name
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:52: Function -> getProject() success
+SELECT name,id FROM proj_names WHERE customer_id ='43' ORDER BY name
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:52: Function -> getJobType() success
+SELECT name,id FROM proj_jobtypes ORDER BY id
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:52: Function -> getUserName() success
+SELECT f_name,name,id FROM proj_users WHERE disabled = 0 order by f_name
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:52: Function -> getObjectName() failure
+SELECT object_num,id FROM proj_objects WHERE objtype_id=AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:52: Function -> getObjectName() success
+SELECT object_num,id FROM proj_objects WHERE objtype_id=1AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:56: Function -> getReportWeek() success
+SELECT j.id, j.object_id, n.name AS name, cust.name AS customer, s.name AS userName, a.account_name AS account, j.job_descr AS descr, jt.name AS jobType, CONVERT( DATE, j.job_date ) AS dateJob, CONVERT( INT, j.job_hours ) AS hoursJob FROM proj_names n, proj_users s, proj_accounts a, proj_jobs j, proj_jobtypes jt, proj_customers cust, proj_objects obj WHERE s.name = 'lz' AND s.id = j.user_id AND a.id = j.account_id AND jt.id = j.jobtype_id AND obj.id = j.object_id AND n.id = obj.proj_id AND (j.job_date BETWEEN '2017-06-05' AND '2017-06-11') AND cust.id = n.customer_id ORDER BY j.job_date, n.name, j.job_hours...
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:56: Function -> getProject() success
+SELECT distinct name, id FROM proj_customers ORDER BY name
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:56: Function -> getJobType() success
+SELECT name,id FROM proj_jobtypes ORDER BY id
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:56: Function -> getProject() success
+SELECT name,id FROM proj_names WHERE customer_id ='43' ORDER BY name
+
+
+me
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:56: Function -> getObjectType() success
+SELECT name,id FROM proj_objtypes order by id
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:56: Function -> getObjectName() failure
+SELECT object_num,id FROM proj_objects WHERE objtype_id=AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+
+[192.168.1.62=>lz] 2017-06-07 18:47:56: Function -> getObjectName() success
+SELECT object_num,id FROM proj_objects WHERE objtype_id=1AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+
+[192.168.1.62=>lz] 2017-06-07 18:49:18: Function -> getProject() success
+SELECT distinct name, id FROM proj_customers ORDER BY name
+
+
+[192.168.1.62=>lz] 2017-06-07 18:49:19: Function -> getReportWeek() success
+SELECT j.id, j.object_id, n.name AS name, cust.name AS customer, s.name AS userName, a.account_name AS account, j.job_descr AS descr, jt.name AS jobType, CONVERT( DATE, j.job_date ) AS dateJob, CONVERT( INT, j.job_hours ) AS hoursJob FROM proj_names n, proj_users s, proj_accounts a, proj_jobs j, proj_jobtypes jt, proj_customers cust, proj_objects obj WHERE s.name = 'lz' AND s.id = j.user_id AND a.id = j.account_id AND jt.id = j.jobtype_id AND obj.id = j.object_id AND n.id = obj.proj_id AND (j.job_date BETWEEN '2017-06-05' AND '2017-06-11') AND cust.id = n.customer_id ORDER BY j.job_date, n.name, j.job_hours...
+
+
+[192.168.1.62=>lz] 2017-06-07 18:49:20: Function -> getObjectType() success
+SELECT name,id FROM proj_objtypes order by id
+
+
+[192.168.1.62=>lz] 2017-06-07 18:49:20: Function -> getJobType() success
+SELECT name,id FROM proj_jobtypes ORDER BY id
+
+
+[192.168.1.62=>lz] 2017-06-07 18:49:20: Function -> getUserName() success
+SELECT f_name,name,id FROM proj_users WHERE disabled = 0 order by f_name
+
+
+[192.168.1.62=>lz] 2017-06-07 18:49:20: Function -> getProject() success
+SELECT name,id FROM proj_names WHERE customer_id ='43' ORDER BY name
+
+
+[192.168.1.62=>lz] 2017-06-07 18:49:20: Function -> getObjectName() success
+SELECT object_num,id FROM proj_objects WHERE objtype_id=1AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+
+[192.168.1.62=>lz] 2017-06-07 18:49:20: Function -> getObjectName() success
+SELECT object_num,id FROM proj_objects WHERE objtype_id=1AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+
+[192.168.1.62=>lz] 2017-06-07 19:24:56: Function -> getProject() success
+SELECT distinct name, id FROM proj_customers ORDER BY name
+
+
+[192.168.1.62=>lz] 2017-06-07 19:24:56: Function -> getReportWeek() success
+SELECT j.id, j.object_id, n.name AS name, cust.name AS customer, s.name AS userName, a.account_name AS account, j.job_descr AS descr, jt.name AS jobType, CONVERT( DATE, j.job_date ) AS dateJob, CONVERT( INT, j.job_hours ) AS hoursJob FROM proj_names n, proj_users s, proj_accounts a, proj_jobs j, proj_jobtypes jt, proj_customers cust, proj_objects obj WHERE s.name = 'lz' AND s.id = j.user_id AND a.id = j.account_id AND jt.id = j.jobtype_id AND obj.id = j.object_id AND n.id = obj.proj_id AND (j.job_date BETWEEN '2017-06-05' AND '2017-06-11') AND cust.id = n.customer_id ORDER BY j.job_date, n.name, j.job_hours...
+
+
+[192.168.1.62=>lz] 2017-06-07 19:24:56: Function -> getObjectType() success
+SELECT name,id FROM proj_objtypes order by id
+
+
+[192.168.1.62=>lz] 2017-06-07 19:24:56: Function -> getUserName() success
+SELECT f_name,name,id FROM proj_users WHERE disabled = 0 order by f_name
+
+
+[192.168.1.62=>lz] 2017-06-07 19:24:56: Function -> getJobType() success
+SELECT name,id FROM proj_jobtypes ORDER BY id
+
+
+[192.168.1.62=>lz] 2017-06-07 19:24:56: Function -> getProject() success
+SELECT name,id FROM proj_names WHERE customer_id ='43' ORDER BY name
+
+
+[192.168.1.62=>lz] 2017-06-07 19:24:56: Function -> getObjectName() success
+SELECT object_num,id FROM proj_objects WHERE objtype_id=1AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+
+[192.168.1.62=>lz] 2017-06-07 19:24:56: Function -> getObjectName() success
+SELECT object_num,id FROM proj_objects WHERE objtype_id=1AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+
+[192.168.1.62=>lz] 2017-06-07 19:25:02: Function -> getReportWeek() success
+SELECT j.id, j.object_id, n.name AS name, cust.name AS customer, s.name AS userName, a.account_name AS account, j.job_descr AS descr, jt.name AS jobType, CONVERT( DATE, j.job_date ) AS dateJob, CONVERT( INT, j.job_hours ) AS hoursJob FROM proj_names n, proj_users s, proj_accounts a, proj_jobs j, proj_jobtypes jt, proj_customers cust, proj_objects obj WHERE s.name = 'lz' AND s.id = j.user_id AND a.id = j.account_id AND jt.id = j.jobtype_id AND obj.id = j.object_id AND n.id = obj.proj_id AND (j.job_date BETWEEN '2017-06-05' AND '2017-06-11') AND cust.id = n.customer_id ORDER BY j.job_date, n.name, j.job_hours...
+
+
+[192.168.1.62=>lz] 2017-06-07 19:25:02: Function -> getProject() success
+SELECT distinct name, id FROM proj_customers ORDER BY name
+
+
+[192.168.1.62=>lz] 2017-06-07 19:25:02: Function -> getJobType() success
+SELECT name,id FROM proj_jobtypes ORDER BY id
+
+
+[192.168.1.62=>lz] 2017-06-07 19:25:02: Function -> getObjectType() success
+SELECT name,id FROM proj_objtypes order by id
+
+
+[192.168.1.62=>lz] 2017-06-07 19:25:02: Function -> getProject() success
+SELECT name,id FROM proj_names WHERE customer_id ='43' ORDER BY name
+
+
+[192.168.1.62=>lz] 2017-06-07 19:25:02: Function -> getUserName() success
+SELECT f_name,name,id FROM proj_users WHERE disabled = 0 order by f_name
+
+
+[192.168.1.62=>lz] 2017-06-07 19:25:02: Function -> getObjectName() success
+SELECT object_num,id FROM proj_objects WHERE objtype_id=1AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+
+[192.168.1.62=>lz] 2017-06-07 19:25:02: Function -> getObjectName() success
+SELECT object_num,id FROM proj_objects WHERE objtype_id=1AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+
+[192.168.1.62=>lz] 2017-06-08 11:45:01: Function -> getProject() success
+SELECT distinct name, id FROM proj_customers ORDER BY name
+
+
+[192.168.1.62=>lz] 2017-06-08 11:45:01: Function -> getReportWeek() success
+SELECT j.id, j.object_id, n.name AS name, cust.name AS customer, s.name AS userName, a.account_name AS account, j.job_descr AS descr, jt.name AS jobType, CONVERT( DATE, j.job_date ) AS dateJob, CONVERT( INT, j.job_hours ) AS hoursJob FROM proj_names n, proj_users s, proj_accounts a, proj_jobs j, proj_jobtypes jt, proj_customers cust, proj_objects obj WHERE s.name = 'lz' AND s.id = j.user_id AND a.id = j.account_id AND jt.id = j.jobtype_id AND obj.id = j.object_id AND n.id = obj.proj_id AND (j.job_date BETWEEN '2017-06-05' AND '2017-06-11') AND cust.id = n.customer_id ORDER BY j.job_date, n.name, j.job_hours...
+
+
+[192.168.1.62=>lz] 2017-06-08 11:45:01: Function -> getProject() success
+SELECT name,id FROM proj_names WHERE customer_id ='43' ORDER BY name
+
+
+[192.168.1.62=>lz] 2017-06-08 11:45:01: Function -> getObjectType() success
+SELECT name,id FROM proj_objtypes order by id
+
+
+[192.168.1.62=>lz] 2017-06-08 11:45:01: Function -> getJobType() success
+SELECT name,id FROM proj_jobtypes ORDER BY id
+
+
+[192.168.1.62=>lz] 2017-06-08 11:45:01: Function -> getUserName() success
+SELECT f_name,name,id FROM proj_users WHERE disabled = 0 order by f_name
+
+
+[192.168.1.62=>lz] 2017-06-08 11:45:02: Function -> getObjectName() failure
+SELECT object_num,id FROM proj_objects WHERE objtype_id=AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+
+[192.168.1.62=>lz] 2017-06-08 11:45:02: Function -> getObjectName() success
+SELECT object_num,id FROM proj_objects WHERE objtype_id=1AND proj_id IN ( SELECT id FROM proj_names WHERE name = 'H-261-001') ORDER BY object_num
+
+

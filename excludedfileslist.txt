@@ -1,0 +1,3 @@
+excludedfileslist.txt
+index.php
+.htaccess

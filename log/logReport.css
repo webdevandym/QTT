@@ -1,0 +1,23 @@
+.logSucc {
+	color: #16dc16;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.logFail{
+	color: red;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+div {
+	margin-top: 7px;
+	padding: 7px;
+	line-height: 18px;
+}
+
+.sql{
+	color: #f72c35;
+	font-weight: bold;
+}
+

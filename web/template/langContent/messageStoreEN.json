@@ -1,0 +1,27 @@
+{
+  "error": {
+    "errorHour": "Please enter hours",
+    "errorObjectName": "please choose value",
+    "descLegend": "Please fill description"
+  },
+  "placeHolders": {
+    "descrTextTS": "Enter you description...",
+    "hours": "Enter hours..."
+  },
+  "labelsTS": {
+    "extraOption": "Extra function",
+    "multiDelete": "Deleting selected records",
+    "multiReport": "Add report at few days",
+    "lastReport": "Go to Last report",
+
+    "deleteApp": {
+      "delete": "Delete selected",
+      "flashChoose": "Select/unselect all records",
+      "exit": "Exit multi-mod"
+    },
+
+    "addDescTS": "ON: add object to descr/OFF: without object stat",
+    "closeError": "Close this window",
+    "today": "Today!"
+  }
+}
