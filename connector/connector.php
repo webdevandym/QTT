@@ -88,8 +88,8 @@ __END;
             $level = 2;
         }
 
-        $log = new logHTMLAdv($flink, $context, true, $templFile);
-        $log->writeLog();
+        // $log = new logHTMLAdv($flink, $context, true, $templFile);
+        // $log->writeLog();
 
         if (empty($result)) {
             die;
@@ -135,6 +135,8 @@ __END;
 
     public function rowCounter($array)
     {
+        $rowCounter = 0;
+        
         foreach ($array as $value) {
             ++$rowCounter;
         }

@@ -30,5 +30,7 @@ function destroySession($excl = '')
         }
     }
 
-    session_destroy();
+    if (session_destroy()) {
+        return;
+    }
 }

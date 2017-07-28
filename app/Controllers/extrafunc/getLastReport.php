@@ -1,9 +1,13 @@
 <?php
 
-require_once __DIR__.'/../../../connector/connector.php';
+namespace app\Controllers\extrafunc;
+
+require_once "../../extendClass/Autoloader.php";
+
+use connector\fastConnect;
 
 if (!(isset($conn))) {
-    fastConnect($conn);
+    fastConnect::inst()->conn($conn);
 }
 
 $userName = $conn->sanitizeString($_GET['name']);

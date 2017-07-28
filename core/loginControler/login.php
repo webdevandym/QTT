@@ -9,7 +9,8 @@ class login
     public static function validUser()
     {
         fastConnect::inst()->conn($conn);
-        $userstr = '(Guest)';
+        $user = '(Guest)';
+        $pass = '';
 
         if (isset($_GET['user'])) {
             $user = $conn->sanitizeString($_GET['user']);
@@ -23,7 +24,7 @@ class login
             $conn->close();
 
             if ($userName) {
-                $userstr = $_SESSION['user'] = $user;
+                $_SESSION['user'] = $user;
                 $_SESSION['userName'] = $userName;
 
                 if (isset($_SESSION['user'])) {
@@ -32,21 +33,22 @@ class login
                 }
 
                 //die("You are now logged in. Please <a href = 'members.php?view=$user'>click here</a> to continue. <br><br>");
-                echo "<script>window.location.href = '.';</script>";
+                echo "<script>location.reload();</script>";
                 die;
             }
         }
 
-        if (!$curPath) {
-            $curPath = $_COOKIE['curPath'];
+        if (!isset($curPath)) {
+            $curPath = 'http://'.preg_replace("/\/\w+\.php/", '', $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
         }
 
+        $username = $user !== '(Guest)'?$user:'';
         echo <<<__END
 
 <html lang="ru">
 <head>
             <title>
-               QTT <?php echo $userstr; ?>
+               QTT $user
             </title>
             <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
             <link rel="stylesheet" type="text/css" href="$curPath/assets/css/mincss/siteStyle-min.css">
@@ -65,11 +67,11 @@ class login
                 <!-- <form method = 'post' action = 'index'> -->
                     <span id = 'errorHolder'></span>
                     <span class = 'fieldname'> Username </span>
-                    <input class = 'loginInput' type = 'text' maxlength="16" name = 'user' value = "$user">
+                    <input class = 'loginInput' type = 'text' maxlength="16" name = 'user' value = "$username">
                     <span id = "loginChecker"></span>
                     <br>
                     <!-- <span class = 'fieldname'> Password </span>
-                    <input class = 'loginInput' type="text" name="pass" maxlength="16" value="<?php echo $pass; ?>">
+                    <input class = 'loginInput' type="text" name="pass" maxlength="16" value="$pass">
                     <br> -->
                     <button class= 'submitLogin'>Войти</button>
                 <!-- </form> -->

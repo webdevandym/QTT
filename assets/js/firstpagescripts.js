@@ -54,7 +54,7 @@ function checkAndLogin() {
       url: './core/loginControler/loginChecker.php?q=' + login + '&sendResult=true',
       success: (data) => {
         if (data != '') {
-          $.get('./core/loginControler/login.php?user=' + login, function(data) {
+          $.get('index.php?user=' + login, function(data) {
             $('body').html(data)
           })
         } else {

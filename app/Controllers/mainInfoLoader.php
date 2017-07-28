@@ -4,22 +4,24 @@ namespace app\Controllers;
 require_once "../extendClass/Autoloader.php";
 
 use app\Controllers\infoLoaderSuperClass;
+use core\messStore;
 
 class selectBlockConnector extends infoLoaderSuperClass
 {
     public function getUserName($switch)
     {
-        if (!$switch) {
+        if (!isset($_SESSION)) {
             session_start();
-        } else {
-            $switch = $switch->edit;
         }
 
-        $sql = 'SELECT f_name,name,id FROM proj_users WHERE disabled = 0 order by f_name';
-        $result = $this->cacheData(24 * 60 * 60, $sql, $switch);
+        $switcher = !isset($switch)? $switch->edit : '';
 
-        $showName = ($switch) ? 'name' : 'f_name';
-        $getTask = (isset($switch)) ? $switch : $_SESSION['user'];
+
+        $sql = 'SELECT f_name,name,id FROM proj_users WHERE disabled = 0 order by f_name';
+        $result = $this->cacheData(24 * 60 * 60, $sql, $switcher);
+
+        $showName = !empty($switcher) ? 'name' : 'f_name';
+        $getTask = !empty($switcher) ? $switch : $_SESSION['user'];
 
         $a = [];
         $i = 0;
@@ -150,7 +152,7 @@ _END;
                 // if (!class_exists('messStore', false)) {
                 //     require_once __DIR__.'./../../core/messStor.php';
                 // }
-                $linkDomText = __DIR__.'./../template/langContent/tsDOMText';
+                $linkDomText = __DIR__.'/../../web/template/langContent/tsDOMText';
                 $title = messStore::genLinks('reportTitle', $linkDomText, true);
             }
 

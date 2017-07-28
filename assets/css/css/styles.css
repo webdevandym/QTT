@@ -46,6 +46,7 @@ option {
 select, option, input, textarea {
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0);
+  background: white;
 }
 
 select:focus, select:active, input:active, input:focus, button:active, button:focus, textarea:active, textarea:focus {
@@ -349,7 +350,7 @@ td>.btn.btn-success {
 .objectTypeTS, .objectNameTS {
   padding: 10px 15px;
   margin: 0 auto;
-  height: 100%;
+  /*height: 100%;*/
   width: 36%;
 }
 

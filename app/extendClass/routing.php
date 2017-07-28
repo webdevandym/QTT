@@ -27,8 +27,9 @@ class routing
             session_start();
         }
 
+
         if (!isset($_COOKIE['curPath'])) {
-            $curPath = 'http://'.preg_replace("/\/\w+\.php/", '', $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
+            echo $curPath = 'http://'.preg_replace("/\/\w+\.php/", '', $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
 
             setcookie('curPath', $curPath, time() + 60 * 60 * 24 * 7, '/');
         }
@@ -43,7 +44,7 @@ class routing
         } else {
             $path = __DIR__ .  '/../../web/template/';
 
-            $this->massRequire([
+            self::$instance->massRequire([
                 'header',
                 'navpanel',
                 "<section class='inputHere' id = 'contentStore'></section>",
@@ -56,10 +57,14 @@ class routing
         return self::$instance;
     }
 
+    public function setSessionVal()
+    {
+    }
+
     private function massRequire(array $val, $path, $print = false)
     {
         foreach ($val as $key => $value) {
-            $file = __DIR__.$path.$value. "php";
+            $file = $path.$value. ".php";
             if (file_exists($file)) {
                 require_once $file;
             } elseif ($print) {

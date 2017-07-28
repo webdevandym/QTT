@@ -72,7 +72,7 @@ function getLastReport() {
 
   var valStore = {
     userName: $('#programmerName option:selected').val(),
-    path: './web/forms/extrafunc/',
+    path: './app/Controllers/extrafunc/',
 
   }
 
