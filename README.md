@@ -11,6 +11,9 @@ Last UPD: 11.07.15 (13:01)
 Pre Stable Version 2.2.6.3 build 37
 
 Change Log:  
+
+3.0.0 build 38
+
 2.2.6.3 build 37
 >All content in JSON files;  
 >Auto check php code in content and processing, before put in json file and render. Compress whitespace.  
