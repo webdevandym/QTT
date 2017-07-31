@@ -128,7 +128,7 @@ gulp.task('compressJS', ['concatJS'], function(cb) {
 
 gulp.task('concatJS', ['babel'], () => {
 
-  return gulp.src(['assets/js/setupParam.js', 'assets/js/moments.js', paths.jsBabel + 'ajaxreqselectblock.js', paths.jsBabel + '*.js', '!' + paths.jsBabel + 'firstpagescripts.js'])
+  return gulp.src(['assets/js/setupParam.js', 'assets/js/moments.js', paths.jsBabel + '*.js', '!' + paths.jsBabel + 'firstpagescripts.js'])
     .pipe(concat('siteJS-min.js'))
     .pipe(gulp.dest(paths.jsminconc));
 });

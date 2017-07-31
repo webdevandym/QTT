@@ -1,6 +1,10 @@
 <?php
-   //Создаём новый объект. Также можно писать и в процедурном стиле
-   $memcache_obj = new \Memcache();
+namespace root;
+
+use \Memcache as Memcache;
+
+//Создаём новый объект. Также можно писать и в процедурном стиле
+   $memcache_obj = new Memcache();
 
    //Соединяемся с нашим сервером
    $memcache_obj->connect('localhost', 11211) or die('Could not connect');
@@ -17,7 +21,7 @@
        $memcache_obj->set('our_var', date('G:i:s'), false, 5);
 
        //Выведем закэшированные данные
-       echo $memcache_obj->get('our_var');
+       echo $memcache_obj->get('out_var');
    }
 
    //Закрываем соединение с сервером Memcached

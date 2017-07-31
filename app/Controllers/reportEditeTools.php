@@ -1,9 +1,8 @@
 <?php
+
 namespace app\Controllers;
 
-require_once "../extendClass/Autoloader.php";
-
-use app\Controllers\infoLoaderSuperClass;
+require_once '../extendClass/Autoloader.php';
 
 class reportEditeTools extends infoLoaderSuperClass
 {
@@ -11,35 +10,21 @@ class reportEditeTools extends infoLoaderSuperClass
     {
         $select = $this->chkProp($selector, 'select');
 
-        $sql = 'SELECT name,id
-				 FROM proj_jobtypes
-				 ORDER BY id';
-
-        $result = $this->cacheData(24 * 60 * 60, $sql, $select);
+        $result = $this->cacheData(24 * 60 * 60, $this->getSQL('query', __FUNCTION__), $select);
 
         foreach ($result as $row) {
-            if (!empty($select) && $select === $row['name']) {
-                $selected = 'selected="selected"';
-            } else {
-                $selected = '';
-            }
-
-            echo "<option $selected value='".$row['id']."'>".$row['name'].'</option>';
+            echo '<option '.((!empty($select) && $select === $row['name']) ? ' selected="selected"' : '')." value='".$row['id']."'>".$row['name'].'</option>';
         }
     }
 
     public function getObjectName($valObj)
     {
-        $name = $this->chkProp($valObj, 'name');
-        $type = $this->chkProp($valObj, 'type');
+        list($name, $type) = $this->chkProp($valObj, ['name', 'type']);
 
         $type = ((int) $type === 5) ? 'ALL' : $type;
-        // $this->createSQLProc('pr_ObjName', 'CREATE PROC  pr_ObjName @type nvarchar(30), @name nvarchar(30) AS select object_num,id
-        //             FROM proj_objects
-        //             WHERE objtype_id = @type AND proj_id IN (
-        //                     SELECT id FROM proj_names WHERE name = @name) ORDER BY object_num');
 
-        $sql = "EXEC pr_ObjName @type = '$type', @name = '$name'";
+        $sql = $this->getSQL('query', __FUNCTION__);
+        eval("\$sql = \"$sql\";");
 
         $result = $this->cacheData(24 * 60 * 60, $sql, $name.$type);
 
@@ -83,9 +68,11 @@ class reportEditeTools extends infoLoaderSuperClass
             $setStat .= $val[$i].',';
         }
 
-        foreach ($val['date'] as $value) {
-            $value = "CONVERT(DATETIME,'".$value."')";
-            $sql = "INSERT INTO  proj_jobs WITH (TABLOCKX) ($DBColumns) VALUES($setStat $value)";
+        foreach ($val['date'] as $val) {
+            $value = $this->getSQL('value', __FUNCTION__);
+            $sql = $this->getSQL('query', __FUNCTION__);
+            eval("\$value = \"$value\";");
+            eval("\$sql = \"$sql\";");
 
             $this->returnQuery($sql, false);
         }
@@ -105,14 +92,13 @@ class reportEditeTools extends infoLoaderSuperClass
         $setStat = '';
 
         for ($i = 1; $i < count($val); ++$i) {
-            $setStat .= $DBColumns[$i - 1]."='".$val[$i]."'";
-            if (!($i === count($val) - 1)) {
-                $setStat .= ', ';
-            }
+            $setStat .= $DBColumns[$i - 1]."='".$val[$i]."',";
         }
 
-        $sql = "UPDATE proj_jobs WITH (TABLOCKX) SET $setStat WHERE id = '$specVal[0]'";
-        // echo $sql;
+        $setStat = substr($setStat, 0, -1);
+
+        $sql = $this->getSQL('query', __FUNCTION__);
+        eval("\$sql = \"$sql\";");
         $this->returnQuery($sql);
     }
 
@@ -120,12 +106,13 @@ class reportEditeTools extends infoLoaderSuperClass
     {
         $id = $this->chkProp($recToDel, 'rec');
 
-        // echo $id;
-        $sql = "DELETE FROM proj_jobs WITH (TABLOCKX) WHERE id IN ($id)";
-
+        $sql = $this->getSQL('query', __FUNCTION__);
+        eval("\$sql = \"$sql\";");
         $this->returnQuery($sql);
     }
 }
 
-$getResult = new reportEditeTools($_GET['method'], (isset($_GET['object'])?$_GET['object']:''));
-$getResult->runVisiter();
+$getResult = new reportEditeTools();
+$getResult
+    ->auto()
+    ->runVisiter();

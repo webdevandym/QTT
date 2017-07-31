@@ -1,0 +1,41 @@
+{
+  "getUserName": {
+    "query": "SELECT f_name,name,id FROM proj_users WHERE disabled = 0 order by f_name"
+  },
+
+  "getObjectType": {
+    "query": "SELECT name,id FROM proj_objtypes order by id"
+  },
+
+  "getProject": {
+    "queryCustomer": "SELECT distinct name, id FROM proj_customers ORDER BY name",
+    "query": "SELECT name,id FROM proj_names WHERE customer_id = '$q' ORDER BY name"
+  },
+
+  "getReportWeek": {
+    "view": "CREATE VIEW V_report AS SELECT j.id, j.object_id, n.name AS name, cust.name AS customer, s.name AS userName, a.account_name AS account, j.job_descr AS descr, jt.name AS jobType, CONVERT( DATE, j.job_date ) AS dateJob, CONVERT( float, j.job_hours ) AS hoursJob  FROM proj_names n,  proj_users s,  proj_accounts a,    proj_jobs j,    proj_jobtypes jt,    proj_customers cust,    proj_objects obj    WHERE s.id = j.user_id    AND a.id = j.account_id    AND jt.id = j.jobtype_id    AND obj.id = j.object_id    AND n.id = obj.proj_id    AND cust.id = n.customer_id ",
+    "proc": "CREATE PROC pr_Report @name nvarchar(30), @startDate DATE, @endDate DATE AS select *    FROM V_report     WHERE userName = @name    AND(dateJob BETWEEN @startDate AND @endDate)    ORDER BY dateJob,    userName,    hoursJob ",
+    "query": "EXEC pr_Report @name = '$name',@startDate = '$startDate', @endDate = '$endDate'"
+  },
+
+  "getJobType": {
+    "query": "SELECT name,id FROM proj_jobtypes ORDER BY id"
+  },
+
+  "getObjectName": {
+    "proc": "CREATE PROC  pr_ObjName @type nvarchar(30), @name nvarchar(30) AS select object_num,id FROM proj_objects WHERE objtype_id = @type AND proj_id IN (SELECT id FROM proj_names WHERE name = @name) ORDER BY object_num",
+    "query": "EXEC pr_ObjName @type = '$type', @name = '$name'"
+  },
+
+  "addReport": {
+    "value": "CONVERT(DATETIME,'$val')",
+    "query": "INSERT INTO  proj_jobs WITH (TABLOCKX) ($DBColumns) VALUES($setStat $value)"
+  },
+  "UpDateDB": {
+    "query": "UPDATE proj_jobs WITH (TABLOCKX) SET $setStat WHERE id = '$specVal[0]'"
+  },
+
+  "removeRecord": {
+    "query": "DELETE FROM proj_jobs WITH (TABLOCKX) WHERE id IN ($id)"
+  }
+}

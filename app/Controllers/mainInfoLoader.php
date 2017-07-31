@@ -1,9 +1,8 @@
 <?php
+
 namespace app\Controllers;
 
-require_once "../extendClass/Autoloader.php";
-
-use app\Controllers\infoLoaderSuperClass;
+require_once '../extendClass/Autoloader.php';
 use core\messStore;
 
 class selectBlockConnector extends infoLoaderSuperClass
@@ -14,11 +13,9 @@ class selectBlockConnector extends infoLoaderSuperClass
             session_start();
         }
 
-        $switcher = !isset($switch)? $switch->edit : '';
+        $switcher = $this->chkProp($switch, 'edit');
 
-
-        $sql = 'SELECT f_name,name,id FROM proj_users WHERE disabled = 0 order by f_name';
-        $result = $this->cacheData(24 * 60 * 60, $sql, $switcher);
+        $result = $this->cacheData(24 * 60 * 60, $this->getSQL('query', __FUNCTION__), $switcher);
 
         $showName = !empty($switcher) ? 'name' : 'f_name';
         $getTask = !empty($switcher) ? $switch : $_SESSION['user'];
@@ -27,23 +24,15 @@ class selectBlockConnector extends infoLoaderSuperClass
         $i = 0;
 
         foreach ($result as $row) {
-            if ($getTask !== $row['name']) {
-                $a[$i++] = "<option value = '".$row['name']."' idnum = '".$row['id']."'>".$row[$showName].'</option>';
-            } else {
-                $a[$i++] = "<option selected = 'selected' value = '".$row['name']."' idnum = '".$row['id']."'>".$row[$showName].'</option>';
-            }
+            $a[$i++] = '<option'.($getTask === $row['name'] ? " selected = 'selected' " : '')." value = '".$row['name']."' idnum = '".$row['id']."'>".$row[$showName].'</option>';
         }
 
-        // $this::printResult($a);
         return $a;
     }
 
-    public function getObjectType()
+    public function getObjectType($val)
     {
-        $sql = 'SELECT name,id FROM proj_objtypes order by id';
-
-        $result = $this->cacheData(24 * 60 * 60, $sql);
-        // $result = $this->returnQuery('SELECT name,id FROM proj_objtypes order by id');
+        $result = $this->cacheData(24 * 60 * 60, $this->getSQL('query', __FUNCTION__));
         $i = 0;
         foreach ($result as $row) {
             if ((int) $row['id'] !== 5) {
@@ -52,30 +41,25 @@ class selectBlockConnector extends infoLoaderSuperClass
         }
 
         asort($a);
-        // $this::printResult($a);
+
         return $a;
     }
 
     public function getProject($query)
     {
-        $q = $this->chkProp($query, 'query');
-        $switch = $this->chkProp($query, 'switch');
-
+        list($q, $switch) = $this->chkProp($query, ['query', 'switch']);
 
         $id = 'name';
         $a = [];
         $first = false;
 
         $id = ($q === 'Customer') ? 'id' : 'name';
+        $key = ($q === 'Customer') ? 'query'.$q : 'query';
 
-        if ($q === 'Customer') {
-            $sql = 'SELECT distinct name, id FROM proj_customers ORDER BY name';
-        } else {
-            $sql = "SELECT name,id FROM proj_names WHERE customer_id ='$q' ORDER BY name";
-        }
+        $sql = $this->getSQL($key, __FUNCTION__);
+        eval("\$sql = \"$sql\";");
 
         $result = $this->cacheData(60 * 60, $sql, $q.$switch);
-        // $result = $this->returnQuery($sql);
 
         foreach ($result as $row) {
             if ((!$first && !$switch) || ($switch === $row['name'])) {
@@ -92,35 +76,17 @@ class selectBlockConnector extends infoLoaderSuperClass
 
     public function getReportWeek($userInfo)
     {
-        $name = $this->chkProp($userInfo, 'name');
-        $startDate = $this->chkProp($userInfo, 'startDate');
-        $endDate = $this->chkProp($userInfo, 'endDate');
+        list($name, $startDate, $endDate) = $this->chkProp($userInfo, ['name', 'startDate', 'endDate']);
 
         $retDate = $name.','.$startDate.','.$endDate;
 
         $a = ['name', 'userName', 'account', 'descr', 'jobType', 'dateJob', 'hoursJob'];
         $table = $result = '';
 
-        // if (!$this->existsTable('V_report', 'V')) {
-        //     $sql = 'CREATE VIEW V_report AS SELECT j.id, j.object_id, n.name AS name, cust.name AS customer, s.name AS userName, a.account_name AS account, j.job_descr AS descr, jt.name AS jobType, CONVERT( DATE, j.job_date ) AS dateJob, CONVERT( float, j.job_hours ) AS hoursJob
-        //     FROM proj_names n, proj_users s, proj_accounts a, proj_jobs j, proj_jobtypes jt, proj_customers cust, proj_objects obj
-        //     WHERE s.id = j.user_id
-        //     AND a.id = j.account_id
-        //     AND jt.id = j.jobtype_id
-        //     AND obj.id = j.object_id
-        //     AND n.id = obj.proj_id
-        //     AND cust.id = n.customer_id';
-        //
-        //     $this->returnQuery($sql, false);
-        // }
+        /*all query in json file: see location in parent class"*/
 
-        // $this->createSQLProc('pr_Report', 'CREATE PROC pr_Report @name nvarchar(30), @startDate DATE, @endDate DATE AS select *
-        //     FROM V_report
-        //     WHERE userName =  @name
-        //     AND (dateJob BETWEEN  @startDate AND  @endDate)
-        //     ORDER BY dateJob, userName, hoursJob');
-
-        $sql = "EXEC pr_Report @name = '$name',@startDate = '$startDate', @endDate = '$endDate' ";
+        $sql = $this->getSQL('query', __FUNCTION__);
+        eval("\$sql = \"$sql\";");
 
         $result = $this->returnQuery($sql);
 
@@ -149,9 +115,6 @@ _END;
 
         if ($table) {
             if (empty($title)) {
-                // if (!class_exists('messStore', false)) {
-                //     require_once __DIR__.'./../../core/messStor.php';
-                // }
                 $linkDomText = __DIR__.'/../../web/template/langContent/tsDOMText';
                 $title = messStore::genLinks('reportTitle', $linkDomText, true);
             }
@@ -178,8 +141,7 @@ _END;
 
             echo $table;
         } else {
-            echo "<div id = 'noRecords' class ='alert alert-success'><span>No Records</span></div></div>";
-            exit();
+            exit("<div id = 'noRecords' class ='alert alert-success'><span>No Records</span></div></div>");
         }
 
         echo <<<_END
@@ -196,5 +158,7 @@ _END;
     }
 }
 
-$getResult = new selectBlockConnector($_GET['method'], (isset($_GET['object'])?$_GET['object']:''));
-$getResult->runVisiter();
+$getResult = new selectBlockConnector();
+$getResult
+    ->auto()
+    ->runVisiter();

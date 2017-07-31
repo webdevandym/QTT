@@ -1,7 +1,7 @@
 <?php
+
 namespace connector;
 
-use connector\connector;
 use core\crypt;
 
 class fastConnect
@@ -39,7 +39,6 @@ class fastConnect
             } else {
                 $pass = $crypt->encrypt_decrypt('decrypt', $pass);
             }
-
 
             $connVar = new connector($xml->dbhost->item, $xml->dbname->item, $xml->dbuser->item, $pass);
             $connVar->getConnection();

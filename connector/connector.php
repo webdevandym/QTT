@@ -1,11 +1,10 @@
 <?php
+
 namespace connector;
 
-// $path = './../core/logSystem';
-// require_once __DIR__."$path/logCreator.php";
-// require_once __DIR__."$path/colorSyntax.php";
 use core\logSystem\colorSyntax;
 use core\logSystem\logHTMLAdv;
+use Exception as Exception;
 
 class connector
 {
@@ -70,11 +69,11 @@ __END;
             $result = self::$db->query($query);
         } catch (\PDOException $e) {
             $this->close();
-            echo '<div id = "dberrorMessage">'.$e->getMessage().'</div>';
+            echo $e->getMessage();
         }
 
-        $flink = __DIR__.'./../log/query.html';
-        $templFile = __DIR__.'./../log/template.txt';
+        $flink = __DIR__.'/../log/query.html';
+        $templFile = __DIR__.'/../log/template.txt';
 
         $query = htmlentities(preg_replace('/[\s\t\n]+/', ' ', $query));
 
@@ -88,8 +87,8 @@ __END;
             $level = 2;
         }
 
-        // $log = new logHTMLAdv($flink, $context, true, $templFile);
-        // $log->writeLog();
+        $log = new logHTMLAdv($flink, $context, true, $templFile, 'Europe/Kiev');
+        $log->writeLog();
 
         if (empty($result)) {
             die;
@@ -136,7 +135,7 @@ __END;
     public function rowCounter($array)
     {
         $rowCounter = 0;
-        
+
         foreach ($array as $value) {
             ++$rowCounter;
         }

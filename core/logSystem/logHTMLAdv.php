@@ -14,6 +14,7 @@ class logHTMLAdv extends logger
             if ($this->way) {
                 $str = str_replace('<body>', '<body>'.$str, $this->content);
             }
+
             fwrite($f, stripslashes($str));
             fclose($f);
         }

@@ -61,7 +61,7 @@ requireDATA.prototype = {
     var _this2 = this;
 
     $.get(paths + jsobj.parsetoJSON(), function (data) {
-
+      console.log(data);
       $.each(JSON.parse(data), function (it, v) {
 
         if (v.condition != undefined && !v.condition) return;

@@ -2,9 +2,10 @@
 
 namespace app\Controllers;
 
-use app\Controllers\visitLoader;
-use core\cached;
 use connector\fastConnect;
+use core\cached;
+use core\messStore;
+use stdClass as stdClass;
 
 define('__ROOT__', __DIR__.'/../../');
 
@@ -20,10 +21,9 @@ abstract class infoLoader implements request
     public static $db;
     public static $cache;
 
-
     public function clr($val)
     {
-        if (!$this::$db) {
+        if (!isset($this::$db)) {
             $this->initConn();
         }
 
@@ -99,7 +99,7 @@ abstract class infoLoader implements request
         }
     }
 
-    protected function cacheData($timeCh, $sql, $addKey = '')
+    protected function cacheData($timeCh, $sql, $addKey = null)
     {
         $key = debug_backtrace()[1]['function'].$addKey;
 
@@ -111,25 +111,37 @@ abstract class infoLoader implements request
 
     protected function chkProp($val, $prop)
     {
-        if (is_object($val) && property_exists($val, $prop)) {
-            return $this->clr($val->$prop);
+        if (!is_array($prop)) {
+            $store[] = $prop;
+        } else {
+            $store = $prop;
         }
 
-        return '';
+        if (is_object($val)) {
+            foreach ($store as $value) {
+                if (property_exists($val, $value)) {
+                    $a[] = $this->clr($val->$value);
+                } else {
+                    $a[] = '';
+                }
+            }
+
+            return count($a) > 1 ? $a : $a[0];
+        }
+
+        return false;
     }
 }
 
 class infoLoaderSuperClass extends infoLoader
 {
     protected $child;
-    private static $method;
+    protected static $method;
+    protected static $queryList = __DIR__.'/../query/queryList';
     private static $transfVal;
 
-    public function __construct($meth, $tval)
+    public function __construct()
     {
-        $m = json_decode($meth);
-        self::$method = is_object($m) ? $m : $meth;
-        self::$transfVal = json_decode($tval);
     }
 
     public function clsParent($obj)
@@ -139,7 +151,7 @@ class infoLoaderSuperClass extends infoLoader
 
     public function runVisiter()
     {
-        if (self::$method instanceof \stdClass) {
+        if (self::$method instanceof stdClass) {
             foreach (self::$method as $key => $value) {
                 $keyclr = $this->clr((string) $key);
 
@@ -149,7 +161,7 @@ class infoLoaderSuperClass extends infoLoader
 
                 unset($load);
 
-                $load = new visitLoader($this, $keyclr, $this->chkProp(self::$method->$keyclr, 'obj'));
+                $load = new visitLoader($this, $keyclr, $this->chkProp(self::$method->$keyclr, ['obj']));
 
                 self::$method->$keyclr->val = $load->runQuery();
             }
@@ -173,5 +185,25 @@ class infoLoaderSuperClass extends infoLoader
                 echo $value;
             }
         }
+    }
+
+    public function auto()
+    {
+        $this::initData($_GET['method'], isset($_GET['object']) ? $_GET['object'] : '');
+
+        return $this;
+    }
+
+    protected static function initData($meth, $tval)
+    {
+        $m = json_decode($meth);
+        self::$method = is_object($m) ? $m : $meth;
+
+        self::$transfVal = json_decode($tval);
+    }
+
+    protected function getSQL($key, $func)
+    {
+        return str_replace("''", "'", $this->chkProp(messStore::instance((string) $func, $this::$queryList, false), $key));
     }
 }

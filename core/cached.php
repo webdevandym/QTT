@@ -1,14 +1,19 @@
 <?php
+
 namespace core;
 
 use connector\fastConnect;
+use core\logSystem\logHTMLAdv;
+use Memcache as Memcache;
 
 abstract class cachedInit
 {
     public $time;
-    public $memcache;
+    public static $memcache = null;
     protected static $db;
     protected static $validConn = false;
+    protected static $hashKey;
+
     private $localhost = 'localhost';
     private $port = 11211;
 
@@ -16,19 +21,26 @@ abstract class cachedInit
     {
         $this->time = $time;
 
-        $this->memcache = new \Memcache();
+        if (!$this::$memcache instanceof Memcache) {
+            $this::$memcache = new Memcache();
+        }
 
         if ($this->validCacheConnect()) {
-            $this->memcache->connect($this->localhost, $this->port);
+            $this::$memcache->connect($this->localhost, $this->port);
         } else {
-            $this->memcache = '';
+            $this::$memcache = '';
         }
     }
 
     public function closeCache()
     {
-        $this->memcache->close();
-        $this::$db->close();
+        if ($this::$memcache instanceof Memcache) {
+            $this::$memcache->close();
+        }
+
+        if ($this::$db instanceof connector) {
+            $this::$db->close();
+        }
     }
 
     public function getConect(&$conn)
@@ -37,14 +49,13 @@ abstract class cachedInit
         $this::$db = $conn;
     }
 
-    protected function setToCache($key, $res)
+    protected function setToCache($res)
     {
         if ($this::$validConn) {
-            $this->memcache->set($key, serialize($res), 0, $this->time);
-            $this->closeCache();
-        } else {
-            $this::$db = $this->getConect($conn);
+            $this::$memcache->set($this::$hashKey, serialize($res), 0, $this->time);
         }
+
+        $this->closeCache();
 
         return $res;
     }
@@ -53,12 +64,15 @@ abstract class cachedInit
     {
         if ($this::$validConn) {
             try {
-                $var_key = $this->memcache->get($key);
+                $this::$hashKey = hashGen::md5($key);
+                $var_key = $this::$memcache->get($this::$hashKey);
             } catch (Exception $e) {
                 echo '<div class = "SQLerror"><span>'.$e->getMessage().'</span></div>';
             }
 
-            if ($var_key) {
+            $this->log($this::$hashKey." ===> [{$key}]", $var_key);
+
+            if (!empty($var_key)) {
                 return  unserialize($var_key);
             }
         }
@@ -66,16 +80,30 @@ abstract class cachedInit
         return false;
     }
 
-    private function validCacheConnect()
+    protected function validCacheConnect()
     {
-        if ($this->memcache instanceof \Memcache && !$this::$validConn) {
-            $this->memcache->addServer($this->localhost, $this->port);
-            $statuses = $this->memcache->getStats();
+        if ($this::$validConn) {
+            return true;
+        }
+        if ($this::$memcache instanceof Memcache) {
+            $this::$memcache->addServer($this->localhost, $this->port);
+            $statuses = $this::$memcache->getStats();
 
-            if (isset($statuses[$this->localhost.':'.$this->port])) {
+            if (is_array($statuses)) {
                 $this::$validConn = true;
+
+                return true;
             }
         }
+
+        return false;
+    }
+
+    private function log($key, $res)
+    {
+        $context = $key.(is_object($this::$memcache) && !empty($res) ? ' - success' : ' - run SQL query!').'<br>'.$res;
+        $log = new logHTMLAdv(__DIR__.'/../log/log.html', $context, false, __DIR__.'/../log/template.txt', 'Europe/Kiev');
+        $log->writeLog();
     }
 }
 
@@ -92,7 +120,7 @@ class cached extends cachedInit
         $result = $this::$db->queryMysql($query);
         $r = $result->fetchAll(\PDO::FETCH_ASSOC);
 
-        return $this->setToCache($key, $r);
+        return $this->setToCache($r);
     }
 
     public function getJSONFileToCache($path, $lang)
@@ -107,6 +135,6 @@ class cached extends cachedInit
 
         $res = json_decode(file_get_contents($path.$lang.'.json'));
 
-        return $this->setToCache($key, $res);
+        return $this->setToCache($res);
     }
 }

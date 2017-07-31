@@ -1,13 +1,14 @@
 <?php
-namespace core;
 
-use core\cached;
+namespace core;
 
 // require_once __DIR__.'/cached.php';
 
 class messStore
 {
     private static $lang = 'EN';
+    private static $langUse = true;
+    private $keepConnect;
     private static $inst;
     private static $linkStore = '';
     private static $level;
@@ -17,13 +18,14 @@ class messStore
     {
     }
 
-    public static function instance($key = null, $path = '')
+    public static function instance($key = null, $path = '', $langUse = true)
     {
         if (!self::$inst) {
             self::$inst = new self();
         }
 
         self::$file = $path ? $path : self::$file;
+        self::$langUse = $langUse;
 
         return self::$inst->get($key);
     }
@@ -59,7 +61,7 @@ class messStore
     private function get($key)
     {
         $cache = new cached(24 * 60 * 60);
-        $res = $cache->getJSONFileToCache(self::$file, self::$lang);
+        $res = $cache->getJSONFileToCache(self::$file, (self::$langUse ? self::$lang : ''));
 
         if ($key) {
             if (is_array($key)) {
@@ -67,7 +69,7 @@ class messStore
                     $res = $res->$value;
                 }
             } else {
-                $res = $res->$key;
+                $res = $res->{$key};
             }
         }
 

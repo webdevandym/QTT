@@ -6,6 +6,7 @@
 //@maxsize max file size in KB
 //@levelclass deep of scan runer class
 //@levelmethod deep of scan runer method
+
 namespace core\logSystem;
 
 abstract class logger
@@ -19,7 +20,7 @@ abstract class logger
     protected $maxsize;
     protected $content;
 
-    public function __construct($file, $context, $way = false, $templ = '', $maxsize = 50, $levelclass = 1, $levelmethod = 1)
+    public function __construct($file, $context, $way, $templ, $timeZone, $maxsize = 50, $levelclass = 1, $levelmethod = 1)
     {
         $this->file = $file;
         $this->way = $way;
@@ -28,6 +29,7 @@ abstract class logger
         $this->maxsize = $maxsize;
         $this->levelclass = $levelclass;
         $this->levelmethod = $levelmethod;
+        date_default_timezone_set($timeZone ? $timeZone : 'UTC');
     }
 
     abstract public function writeLog();
@@ -36,13 +38,16 @@ abstract class logger
 
     protected function returnRunerFunc()
     {
-        return 'Class -> <i>'.$this::treeFinder($this->levelclass, 'class').' </i>:: method -> <i>'.$this::treeFinder($this->levelmethod, 'function').'()</i>';
+        return 'Class -> <i>'.str_replace('\\', '\/', $this::treeFinder($this->levelclass, 'class')).' </i>:: method -> <i>'.$this::treeFinder($this->levelmethod, 'function').'()</i>';
     }
 
     protected static function treeFinder($level, $obj)
     {
         for ($i = $level + 4; $i !== 0; --$i) {
-            $objInTree = debug_backtrace()[$i][$obj];
+            if (isset(debug_backtrace()[$i])) {
+                $objInTree = debug_backtrace()[$i][$obj];
+            }
+
             if (isset($objInTree)) {
                 return $objInTree;
             }

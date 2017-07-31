@@ -258,6 +258,7 @@ select:focus, select:active, input:active, input:focus, button:active, button:fo
   background-image: none !important;
   background-color: #48d048 !important;
   color: white;
+  z-index: 2;
   border-radius: 3px;
   -webkit-box-shadow: 3px 3px 5px rgba(75, 183, 10, 0.8);
   box-shadow: 3px 3px 5px rgba(75, 183, 10, 0.8);
