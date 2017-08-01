@@ -13,6 +13,7 @@ Pre Stable Version 2.2.6.3 build 37
 Change Log:  
 
 3.0.0 build 38
+>New request System.
 
 2.2.6.3 build 37
 >All content in JSON files;  

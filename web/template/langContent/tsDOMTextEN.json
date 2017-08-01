@@ -6,7 +6,8 @@
     "jobt": "Job Type",
     "hour": "Hours",
     "oType": "Object Type",
-    "oName": "Object Name"
+    "oName": "Object Name",
+    "oTitle": "Object Title"
   },
 
   "modalEdit": {

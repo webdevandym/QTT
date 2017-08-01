@@ -120,7 +120,7 @@ __END;
 
     public function sanitizeString($var)
     {
-        if ($var) {
+        if (!is_object($var)) {
             if (!empty(self::$db)) {
                 $var = stripslashes(htmlentities(strip_tags($var)));
 
@@ -129,7 +129,7 @@ __END;
             throw new Exception('Check you connect to DB!');
         }
 
-        return '';
+        return $var;
     }
 
     public function rowCounter($array)

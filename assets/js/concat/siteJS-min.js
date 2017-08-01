@@ -4543,7 +4543,7 @@ requireDATA.prototype = {
     var _this2 = this;
 
     $.get(paths + jsobj.parsetoJSON(), function (data) {
-      // console.log(data);
+      console.log(data);
       $.each(JSON.parse(data), function (it, v) {
 
         if (v.condition != undefined && !v.condition) return;
@@ -7407,7 +7407,7 @@ objectWorker.prototype = {
 
     $('#objectType_m option:contains(' + objType.replace(/^ | $/, '') + ')').attr('selected', true);
 
-    if (this._val[0] == '') this.doIt = false;
+    if (this._val[1] == undefined) this.doIt = false;
     this.stat.resolve('and');
     if (this.getObName()) return this;
   },
@@ -7422,6 +7422,7 @@ objectWorker.prototype = {
 
   getObjNameEditor: function getObjNameEditor() {
     var _this = this;
+
     this.doIt && this.wait(200, function () {
       $("#objNameTS_m option:contains(\'" + _this._val[1].replace(/^ | $/, '') + "\')").attr('selected', true);
     });
@@ -7626,6 +7627,11 @@ function getObjName(skip, way, trVal, callback) {
 }
 'use strict';
 
+$('#show').on('click', function () {
+  console.log($(this).serialize());
+});
+'use strict';
+
 function ValidDesc(object, legendID, hour) {
   if ($(object).val() == '' || hour && parseFloat(object.val()) <= 0) {
 
@@ -7818,7 +7824,7 @@ insertNewReport.prototype = {
     insertVal[objLeng + 1] = parseFloat($('#hours').val());
     //temp val.
     insertVal[objLeng + 2] = 5;
-    // console.log(insertVal);
+    console.log(insertVal);
 
     this.dateEdit = dateEdit;
     this.insertVal = insertVal || {};

@@ -2,6 +2,8 @@
 
 namespace app\Controllers;
 
+use stdClass as stdClass;
+
 require_once '../extendClass/Autoloader.php';
 
 class reportEditeTools extends infoLoaderSuperClass
@@ -68,16 +70,17 @@ class reportEditeTools extends infoLoaderSuperClass
             $setStat .= $val[$i].',';
         }
 
+        $setStar = substr($setStat, 0, -1);
+
         foreach ($val['date'] as $val) {
             $value = $this->getSQL('value', __FUNCTION__);
             $sql = $this->getSQL('query', __FUNCTION__);
             eval("\$value = \"$value\";");
             eval("\$sql = \"$sql\";");
 
-            $this->returnQuery($sql, false);
+            $this->returnQuery($sql);
         }
         // echo $sql;
-        $this::$db->close();
     }
 
     public function UpDateDB($valStore)

@@ -60,7 +60,7 @@ requireDATA.prototype = {
   runQuery: function(paths, jsobj) {
 
     $.get(paths + jsobj.parsetoJSON(), function(data) {
-      // console.log(data);
+      console.log(data);
       $.each(JSON.parse(data), (it, v) => {
 
         if (v.condition != undefined && !v.condition) return;

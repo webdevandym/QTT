@@ -145,7 +145,7 @@ objectWorker.prototype = {
 
     $('#objectType_m option:contains(' + objType.replace(/^ | $/, '') + ')').attr('selected', true);
 
-    if (this._val[0] == '') this.doIt = false;
+    if (this._val[1] == undefined) this.doIt = false;
     this.stat.resolve('and');
     if (this.getObName()) return this;
   },
@@ -160,6 +160,7 @@ objectWorker.prototype = {
 
   getObjNameEditor: function getObjNameEditor() {
     var _this = this;
+
     this.doIt && this.wait(200, function () {
       $("#objNameTS_m option:contains(\'" + _this._val[1].replace(/^ | $/, '') + "\')").attr('selected', true);
     });

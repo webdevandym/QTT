@@ -4,6 +4,7 @@ namespace app\Controllers;
 
 use connector\fastConnect;
 use core\cached;
+use core\logSystem\logHTMLAdv;
 use core\messStore;
 use stdClass as stdClass;
 
@@ -20,6 +21,7 @@ abstract class infoLoader implements request
 {
     public static $db;
     public static $cache;
+    protected static $logDir = __DIR__.'/../../log/';
 
     public function clr($val)
     {
@@ -32,12 +34,11 @@ abstract class infoLoader implements request
 
     public function initConn($chached = false, $time = 10)
     {
-        if ($chached) {
+        if ($chached && !($this::$cache instanceof cached)) {
             $this::$cache = new cached($time, $chached);
             $this::$cache->getConect($conn);
             $this::$db = $conn;
-        } else {
-            require_once __ROOT__.'./connector/connector.php';
+        } elseif (!($this::$db  instanceof connector)) {
             fastConnect::inst()->conn($conn);
             $this::$db = $conn;
         }
@@ -77,17 +78,13 @@ abstract class infoLoader implements request
         return true;
     }
 
-    protected function returnQuery($query, $close = true)
+    protected function returnQuery($query)
     {
         if (!$this::$db) {
             $this->initConn();
         }
 
         $res = $this::$db->queryMysql($query);
-
-        if ($close) {
-            $this::$db->close();
-        }
 
         return $res;
     }
@@ -111,7 +108,7 @@ abstract class infoLoader implements request
 
     protected function chkProp($val, $prop)
     {
-        if (!is_array($prop)) {
+        if (!is_array($prop) && !is_object($prop)) {
             $store[] = $prop;
         } else {
             $store = $prop;
@@ -130,6 +127,33 @@ abstract class infoLoader implements request
         }
 
         return false;
+    }
+
+    protected function log($key, $res)
+    {
+        if (isset(self::$logDir)) {
+            if ($res instanceof stdClass || is_array($res)) {
+                $run = function ($res) {
+                    $output = '';
+                    foreach ($res as $key => $value) {
+                        if ($value instanceof stdClass || is_array($value)) {
+                            $run($value);
+                        }
+                        $output .= $key.' => '.$value.'<br>';
+                    }
+
+                    return $output;
+                };
+
+                $output = $run($res);
+            } else {
+                $output = $res;
+            }
+
+            $context = 'Key: '.$key.'<br>'.$output;
+            $log = new logHTMLAdv(self::$logDir.'logRuner.html', $context, false, self::$logDir.'template.txt', 'Europe/Kiev');
+            $log->writeLog();
+        }
     }
 }
 
@@ -160,31 +184,33 @@ class infoLoaderSuperClass extends infoLoader
                 }
 
                 unset($load);
+                $objectVal = $this->chkProp(self::$method->$keyclr, 'obj');
 
-                $load = new visitLoader($this, $keyclr, $this->chkProp(self::$method->$keyclr, ['obj']));
+                $this->log($keyclr, $objectVal);
+                $load = new visitLoader($this, $keyclr, $objectVal);
 
                 self::$method->$keyclr->val = $load->runQuery();
             }
             echo json_encode(self::$method);
-
-            return;
-        }
-
-        $clrMethod = $this->clr(self::$method);
-        if (method_exists($this, $clrMethod)) {
-            $obj = $this;
         } else {
-            return;
-        }
+            $clrMethod = $this->clr(self::$method);
+            if (method_exists($this, $clrMethod)) {
+                $obj = $this;
+            } else {
+                return $this::$db->close();
+            }
 
-        $load = new visitLoader($obj, $clrMethod, self::$transfVal);
-        $res = $load->runQuery();
+            $load = new visitLoader($obj, $clrMethod, self::$transfVal);
+            $res = $load->runQuery();
 
-        if (is_array($res)) {
-            foreach ($res as $key => $value) {
-                echo $value;
+            if (is_array($res)) {
+                foreach ($res as $key => $value) {
+                    echo $value;
+                }
             }
         }
+
+        return $this::$db->close();
     }
 
     public function auto()

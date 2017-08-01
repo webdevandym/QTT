@@ -206,7 +206,7 @@ insertNewReport.prototype = {
     insertVal[objLeng + 1] = parseFloat($('#hours').val())
     //temp val.
     insertVal[objLeng + 2] = 5
-    // console.log(insertVal);
+    console.log(insertVal);
 
     this.dateEdit = dateEdit;
     this.insertVal = insertVal || {};
