@@ -1,15 +1,17 @@
 <?php
+
 namespace app\extendClass;
 
-use core\loginControler\login ;
+use core\loginControler\login;
 
 class routing
 {
     protected static $instance;
+    protected static $templatePath = __DIR__.'/../../web/template/';
 
     private function __construct()
     {
-        # code...
+        // code...
     }
 
     public function instance()
@@ -27,9 +29,8 @@ class routing
             session_start();
         }
 
-
         if (!isset($_COOKIE['curPath'])) {
-            echo $curPath = 'http://'.preg_replace("/\/\w+\.php/", '', $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
+            $curPath = 'http://'.preg_replace("/\/\w+\.php/", '', $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']);
 
             setcookie('curPath', $curPath, time() + 60 * 60 * 24 * 7, '/');
         }
@@ -42,16 +43,14 @@ class routing
         if (!isset($_COOKIE['user'])) {
             login::validUser();
         } else {
-            $path = __DIR__ .  '/../../web/template/';
-
-            self::$instance->massRequire([
+            $pageConstruct = [
                 'header',
                 'navpanel',
                 "<section class='inputHere' id = 'contentStore'></section>",
                 'connectjs',
-                'footer'], $path, true);
+                'footer', ];
 
-            echo "</body>";
+            self::$instance::renderPage($pageConstruct);
         }
 
         return self::$instance;
@@ -61,15 +60,22 @@ class routing
     {
     }
 
-    private function massRequire(array $val, $path, $print = false)
+    private static function massRequire(array $val, $path, $print = false)
     {
         foreach ($val as $key => $value) {
-            $file = $path.$value. ".php";
+            $file = $path.$value.'.php';
             if (file_exists($file)) {
                 require_once $file;
             } elseif ($print) {
                 echo $value;
             }
         }
+    }
+
+    private static function renderPage(array $pagelist)
+    {
+        self::$instance::massRequire($pagelist, self::$templatePath, true);
+
+        echo '</body></html>';
     }
 }

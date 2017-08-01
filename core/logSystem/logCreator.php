@@ -1,13 +1,12 @@
 <?php
-namespace core\logSystem;
 
-use core\logSystem\logger;
+namespace core\logSystem;
 
 class logCreator extends logger
 {
     public function writeLog()
     {
-        $str = '['.$_SERVER['REMOTE_ADDR'].'=>'.$_COOKIE['user'].'] '.date('Y-m-d H:i:s\: ', time()).$this->returnRunerFunc().preg_replace('/[ \\t]+/', ' ', $this->context)."\n\n\n";
+        $str = '['.$_SERVER['REMOTE_ADDR'].'=>'.$_COOKIE['user'].'] '.date('Y-m-d H:i:s\: ', time()).str_replace('/<\w+>/', '', $this->returnRunerFunc()).preg_replace('/[ \\t]+/', ' ', $this->context)."\n\n\n";
 
         if ($f = $this->checkfile()) {
             fwrite($f, $str.$this->content);

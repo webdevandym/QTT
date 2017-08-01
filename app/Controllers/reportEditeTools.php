@@ -49,7 +49,7 @@ class reportEditeTools extends infoLoaderSuperClass
     public function addReport($updval)
     {
         foreach ($updval as $value) {
-            if ($value instanceof \stdClass) {
+            if ($value instanceof stdClass) {
                 foreach ($value as $res) {
                     $val['date'][] = $res;
                 }

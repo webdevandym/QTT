@@ -204,6 +204,8 @@ class infoLoaderSuperClass extends infoLoader
 
     protected function getSQL($key, $func)
     {
-        return str_replace("''", "'", $this->chkProp(messStore::instance((string) $func, $this::$queryList, false), $key));
+        $sql = str_replace("''", "'", $this->chkProp(messStore::instance((string) $func, $this::$queryList, false), $key));
+
+        return $sql;
     }
 }
