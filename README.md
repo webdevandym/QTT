@@ -7,7 +7,7 @@
 ║╚╝─║──║║────║║  
 ╚═══╝──╚╝────╚╝  
 
-Project moved -> `https://github.com/webdevandym/tinyMCV`
+Project moved -> https://github.com/webdevandym/tinyMCV
 
 Last UPD: 11.07.15 (13:01)  
 Pre Stable Version 2.2.6.3 build 37
